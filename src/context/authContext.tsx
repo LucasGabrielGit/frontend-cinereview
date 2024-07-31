@@ -30,28 +30,12 @@ export const AuthProvider = ({ children }: IProps) => {
 
   const signIn = async (user: User) => {
     setIsLoading(true)
-
+    console.log(user)
     try {
-      if (user.username) {
-        api.post("/user/login", {
-          username: user.username,
-          password: user.password_hash,
-        }).then(response => {
-          setIsLoading(false)
-          setUser(response.data.user)
-          setToken(response.data.token)
-
-          setTimeout(() => {
-            navigate('/home')
-          }, 2000)
-        }).catch(error => {
-          setError(error.response.data.message)
-          setIsLoading(false)
-        })
-      } else {
+      if (user.email) {
         api.post("/user/login", {
           email: user.email,
-          password: user.password_hash
+          password_hash: user.password_hash,
         }).then(response => {
           setIsLoading(false)
           setUser(response.data.user)

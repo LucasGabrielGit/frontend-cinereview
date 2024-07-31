@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#username:focus + .input-bar,
+#password:focus + .input-bar {
+  width: 100%;
+  transition: all 0.3s ease;
+}
